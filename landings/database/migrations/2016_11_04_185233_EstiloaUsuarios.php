@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class EstiloaUsuarios extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,8 @@ class CreateRolesTable extends Migration
     public function up()
     {
         //
-        Schema::create('roles',function($table){
-
-            $table->increments('id');
-            $table->string('descripcion');
-
+        Schema::table('usuario_landing',function($table){
+            $table->foreign('estilo_id')->references('id')->on('estilo_landing');
         });
     }
 
@@ -30,8 +27,10 @@ class CreateRolesTable extends Migration
     public function down()
     {
         //
-        Schema::drop('roles');
+        Schema::table('usuario_landing',function($table){
 
-        
+            $table->dropForeign(['estilo_id']);
+
+        });
     }
 }

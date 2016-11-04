@@ -14,6 +14,10 @@ class CreateEstilolandingTable extends Migration
     public function up()
     {
         //
+        Schema::create('estilo_landing',function($table){
+            $table->increments('id');
+            $table->string('descripcion');
+        });
     }
 
     /**
@@ -24,5 +28,6 @@ class CreateEstilolandingTable extends Migration
     public function down()
     {
         //
+        Schema::drop('estilo_landing');
     }
 }
