@@ -3,7 +3,7 @@
 <head>
 	<title>Landing Page Generator</title>
 
-	<link rel="stylesheet" type="text/css" href="bower_components/angular-datatables/dist/css/angular-datables.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/angular-datatables/dist/css/angular-datatables.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	
 </head>
@@ -25,6 +25,8 @@
 
 <!-- Modulos -->
 <script type="text/javascript" src="app/app.module.js"></script>
+
+<script type="text/javascript" src="app/components/Login/login.js"></script>
 
 </body>
 </html>
