@@ -19,6 +19,7 @@
 <script type="text/javascript" src="bower_components/angular-css/angular-css.js"></script>
 <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script> <!--Bootstrap -->
 <script type="text/javascript" src="bower_components/datatables.net/js/jquery.dataTables.js"></script> <!-- Jquery DT -->
+<script type="text/javascript" src="bower_components/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
 
 
 
