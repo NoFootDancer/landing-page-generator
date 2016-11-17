@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::resource('register','loginController');
+Route::post('login','loginController@LogUser');
+Route::get('current','loginController@current');
+Route::get('logout','loginController@logout');
