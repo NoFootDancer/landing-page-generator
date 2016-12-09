@@ -3,64 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\usuario;
-use Auth;
-
-class loginController extends Controller
+use App\contactoLanding;
+class contactoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
-    public function LogUser(Request $request){
-        
-        if(Auth::attempt(['username'=>$request->uname, 'password'=>$request->pw], true)){
-            return response()->json(Auth::user());
-        }else{
-            $p = "User doesn't exist / Invalid Pw";
-
-            return response($p);
-
-        }
-
-    }
-
-    public function current(Request $request){
-
-        if(Auth::user()){
-
-            return response()->json(Auth::user());
-            
-        }else{
-
-            $p = "Not logged in";
-
-            return response($p);
-
-        }       
-
-
-    }
-
-    public function currentId(Request $request){
-        if(Auth::user()){
-            return response()->json(Auth::user()->id);
-
-        }else{
-            $p = 0;
-            return response($p);
-        }
-    }
-
-    public function logout(Request $request){
-
-        Auth::logout();
-
-        return response()->json(Auth::user());
-    }
-
     public function index()
     {
         //
@@ -84,20 +34,14 @@ class loginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Msg = new contactoLanding();
+        $Msg->nombre = $request->name;
+        $Msg->correo = $request->email;
+        $Msg->comentarios = $request->msg;
+        $Msg->landing_id =$request->landingID;
+        $Msg->save();
 
-        $User = new usuario();
-        $User->nombres = $request->fname;
-        $User->apellidos = $request->lname;
-        $User->username = $request->uname;
-        $User->email = $request->email;
-        $User->telefono = $request->telephone;
-        $User->password = bcrypt($request->pw);
-        $User->rol_id = 2;
-        $User->save();
-
-        return response()->json($User);
-
+        return response()->json($Msg);
     }
 
     /**
@@ -144,5 +88,4 @@ class loginController extends Controller
     {
         //
     }
-
 }

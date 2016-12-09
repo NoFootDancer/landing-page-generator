@@ -29,6 +29,11 @@
     <button id="singlebutton" name="singlebutton" class="btn btn-land1 center-block" ng-click="test()">
         Login
     </button>
+
+    <div class="alert alert-danger alert-dismissible collapse" role="alert" id="alert">
+       <button type="button" class="close" data-ng-click="CloseAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{{alertype}}</strong> {{alertmsg}}</div>
+
 </div>
  </div>
 

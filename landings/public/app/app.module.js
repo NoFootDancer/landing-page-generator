@@ -1,1 +1,1 @@
-var app = angular.module('landingapp',['ngOnlyNumberApp','ngRoute','angularCSS','ui.bootstrap','login','make_landing']);
+var app = angular.module('landingapp',['ngOnlyNumberApp','ngRoute','angularCSS','ui.bootstrap','login','make_landing','Navbar']);

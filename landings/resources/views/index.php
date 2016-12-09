@@ -3,11 +3,14 @@
 <head>
 	<title>Landing Page Generator</title>
 
+	<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/angular-datatables/dist/css/angular-datatables.css">
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
 	
 </head>
 <body>
+<ng-include src="'app/components/Navbar/Navbar.html'"></ng-include>
 <div class="container-full" ng-view></div>
 
 
@@ -30,6 +33,7 @@
 <script type="text/javascript" src="app/app.module.js"></script>
 <script type="text/javascript" src="app/components/Login/login.js"></script>
 <script type="text/javascript" src="app/components/Create_Landing/landing.js"></script>
+<script type="text/javascript" src="app/components/Navbar/Navbar.js"></script>
 
 </body>
 </html>

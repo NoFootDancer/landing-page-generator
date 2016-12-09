@@ -15,11 +15,11 @@
             <label class="control-label col-md-3">First name</label>
             
             <div class="col-sm-3">
-            <input type="text" placeholder="Enter your first name" class="form-control" ng-model="Reg.fname"></div>
+            <input type="text" placeholder="Enter your first name" class="form-control" ng-model="Reg.fname" ng-pattern="/^[a-zA-Z\s]*$/" ng-change="Validate()" name="fname"></div>
 
             <label class="control-label col-md-2">Last name</label>
             <div class="col-sm-3">
-            <input type="text" placeholder="Enter your last name" class="form-control" ng-model="Reg.lname">
+            <input type="text" placeholder="Enter your last name" class="form-control" ng-model="Reg.lname" ng-pattern="/^[a-zA-Z\s]*$|^$" ng-change="Validate()" name="lname" required>
               </div>
             </div>
 
@@ -27,35 +27,35 @@
             <label class="control-label col-sm-3">Username</label>
             
             <div class="col-sm-8">
-            <input type="text" placeholder="The name you'll use on the site ex: (Robert D)" class="form-control" ng-model="Reg.uname"></div>
+            <input type="text" placeholder="The name you'll use on the site ex: (Robert D)" class="form-control" ng-model="Reg.uname" required></div>
          </div>
 
             <div class="form-group">
             <label class="control-label col-sm-3">Telephone</label>
             
             <div class="col-sm-8">
-            <input type="text" placeholder="ex: 619-123-456-78" class="form-control"  ng-pattern="/^[0-9 \s]+$/" ng-trim="true" ng-model="Reg.telephone"></div>
+            <input type="text" placeholder="ex: 619-123-456-78" class="form-control"  ng-pattern="/^[0-9 \s]+$/" ng-trim="true" ng-model="Reg.telephone" name="phone" ng-change="Validate()"></div>
          </div>
 
             <div class="form-group">
             <label class="control-label col-sm-3">E-mail</label>
             
             <div class="col-sm-8">
-            <input type="text" placeholder="ex: RobertDoe@gmail.com" class="form-control" ng-model="Reg.email"></div>
+            <input type="text" placeholder="ex: RobertDoe@gmail.com" class="form-control" ng-model="Reg.email" required name="email" ></div>
          </div>
 
             <div class="form-group">
             <label class="control-label col-sm-3">Password</label>
             
             <div class="col-sm-8">
-            <input type="Password" placeholder="*****" class="form-control" ng-model="Reg.pw"></div>
+            <input type="Password" placeholder="*****" class="form-control" ng-model="Reg.pw" ng-change="Validate()" required></div>
          </div>
 
           <div class="form-group">
             <label class="control-label col-sm-3">Repeat-password</label>
             
             <div class="col-sm-8">
-            <input type="Password" placeholder="*****" class="form-control" ng-model="Reg.rpw"></div>
+            <input type="Password" placeholder="*****" class="form-control" ng-model="Reg.rpw" ng-change="Validate()" required></div>
          </div>
 
          </div>
@@ -77,9 +77,14 @@
 
 <div class="modal-footer" style="background:#fff; border:none;">
   	<div class="col-md-12 text-center">
-    <button id="singlebutton" type="submit" name="singlebutton" class="btn btn-land1 center-block" ng-disabled="regForm.$invalid">
+    <button id="singlebutton" type="submit" name="singlebutton" class="btn btn-land1 center-block" id="btns" ng-disabled="regForm.$invalid">
         Register!
     </button>
+
+    <div class="alert alert-warning alert-dismissible collapse" role="alert" id="alert">
+       <button type="button" class="close" data-ng-click="CloseAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning! </strong>Remember: {{alertmsg}} {{alertmsg1}} {{alertmsg2}} {{alertmsg3}}<br></div>
+
 </div>
  </div>
 

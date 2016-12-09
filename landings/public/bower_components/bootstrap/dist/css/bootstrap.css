@@ -3033,7 +3033,7 @@ select[multiple].input-lg {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333;
+  color: #fff;
   text-decoration: none;
 }
 .btn:active,
@@ -5721,6 +5721,17 @@ button.list-group-item-danger.active:focus {
   background-color: #337ab7;
   border-color: #337ab7;
 }
+
+.panel-land1 {
+  border-color: #337ab7;
+}
+
+.panel-land1 > .panel-heading {
+  color: #fff;
+  background-color: #003b46;
+  border-color: #337ab7;
+}
+
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #337ab7;
 }

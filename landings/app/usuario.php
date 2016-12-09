@@ -10,5 +10,8 @@ class usuario extends Model
     //
 protected $table = 'usuarios';
 
+public function haslandings(){
+	return $this->hasMany('App\usuarioLanding');
+}
 
 }
