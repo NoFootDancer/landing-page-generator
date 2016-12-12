@@ -1,18 +1,22 @@
-<div class="container">
+<div class="container" style="margin-top: 75px">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="table-responsive">
 				<table datatable="ng" class="table">
 					<thead>
 						<th>#</th>
-						<th>Title</th>
+						<th>Landing title</th>
+						<th>Creation date</th>
+						<th>Last edition</th>
 						<th>Edit</th>
 						<tbody>
-							<tr>
-								<td></td>
-								<td></td>
+							<tr ng-repeat="land in Landings">
+								<td>{{$index + 1}}</td>
+								<td>{{land.nombre_landing}}</td>
+								<td>{{land.created_at}}</td>
+								<td>{{land.updated_at}}</td>
 								<td>
-								<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+								<button type="button" class="btn btn-primary" ng-click="GoEdit(land.nombre_landing)"><span class="glyphicon glyphicon-pencil"></span> </button></td>
 							</tr>
 						</tbody>
 					</thead>

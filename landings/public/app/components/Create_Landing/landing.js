@@ -30,7 +30,7 @@ app.config(['$routeProvider',function($routeProvider){
 }]);
 
 //Crear landing
-app.controller('landingCtrl',['$scope','$http',function($scope,$http){
+app.controller('landingCtrl',['$scope','$http','$location',function($scope,$http,$location){
 var that = $scope;
 $scope.Landing = {'userid':0};
 
@@ -47,6 +47,7 @@ $scope.Submit = function(){
 
 	$http.post('make-landing',that.Landing).success(function(data){
 		console.log(data);
+		$location.path('/landing/'+that.Landing.name);
 	});
 
 }
@@ -54,7 +55,7 @@ $scope.Submit = function(){
 }]);
 
 //Visualizar Landing
-app.controller('landCtrl',['$scope','$http','$routeParams', function($scope,$http,$routeParams){
+app.controller('landCtrl',['$scope','$http','$routeParams','$location', function($scope,$http,$routeParams,$location){
 var that = $scope;
 $scope.Landing = {'switch':1,Details:{}};
 $scope.Contact = {};
@@ -73,10 +74,17 @@ if($routeParams){
 	})
 }
 
+$scope.GoEdit = function(ruta){
+
+	$location.path('/edit/'+ruta);
+
+}
+
 $scope.Submit = function(){
 
 	$http.post('Landing-Contact',that.Contact).success(function(data){
 		that.contact = {};
+		$location.path(that.Landing.Details.hyperlink);
 	})
 }
 
@@ -128,7 +136,7 @@ $http.get('currentid').success(function(data){
 $scope.Edit = function(){
 
 	$http.put('updatelanding',that.Landing).success(function(data){
-		console.log(data);
+		$location.path('/landing/'+that.Landing.name);
 	});
 
 }
@@ -138,7 +146,24 @@ $scope.IsThisYourLanding();
 
 
 app.controller('ListCtrl',['$scope','$http','$location','$rootScope',function($scope,$http,$location,$rootScope){
+var that = $scope;
+that.Landings = {}
+that.User = JSON.parse(localStorage.DUser);
 
+$scope.BringThem = function(){
+
+	$http.get('my-landings/'+that.User.id).success(function(data){
+
+		that.Landings = data;
+
+	});
+
+}
+$scope.BringThem();
+
+$scope.GoEdit = function(nombre){
+	$location.path('/edit/'+nombre)
+}
 
 
 }]);

@@ -53,9 +53,13 @@ app.controller('loginCtrl',['$scope','$http','$filter','$uibModal','$rootScope',
 				that.User.switch = 2;
 				that.User.current = data;
 				$rootScope.DUser = data;
+				localStorage.DUser = JSON.stringify(data);
 
 				$http.get('Landing-count/'+$rootScope.DUser.id).success(function(data){
 					$rootScope.DUser.landingcounter = data;
+					var a = JSON.parse(localStorage.DUser);
+					a.landingcounter = data;
+					localStorage.DUser = JSON.stringify(a);	
 				});
 
 			}
