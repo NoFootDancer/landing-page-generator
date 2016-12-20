@@ -1,6 +1,5 @@
-
 <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" ng-controller="loginCtrl">
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" id="elmenu" ng-controller="loginCtrl">
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -16,6 +15,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-switch="User.switch">
             <div ng-switch-default>
             <ul class="nav navbar-nav navbar-right">
+            <!--
                     <li>
                         <a href="" ng-click="scrollAbout()">About</a>
                     </li>
@@ -24,13 +24,13 @@
                     </li>
                     <li>
                         <a href="" ng-click="scrollContact()">Contact</a>
-                    </li>
+                    </li>-->
                     <li><a href="" ng-click="ModalLogin()">Log-in</a></li>
-                    <li><button class="btn btn-land1" style="padding-top:15px; padding-bottom:15px; line-height:20px; position:relative; min-height:15px;" ng-click="ModalRegister()">Register</button></li>
+                    <li style="margin-top:10%;"><button class="btn btn-land1" style="padding-top:15px; padding-bottom:15px; line-height:20px; position:relative; min-height:15px;" ng-click="ModalRegister()">Register</button></li>
                 </ul> 
             </div>
             <div ng-switch-when="2">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right"><!--
                     <li>
                         <a href="" ng-click="scrollAbout()">About</a>
                     </li>
@@ -39,15 +39,15 @@
                     </li>
                     <li>
                         <a href="" ng-click="scrollContact()">Contact</a>
-                    </li>
-                    <li>
+                    </li>-->
+                    <li style="margin-top:10%;">
                         <div class="dropdown">
                           <button class="btn btn-land1 dropdown-toggle" type="button" data-toggle="dropdown" style="padding-top:15px; padding-bottom:15px; line-height:20px;">{{User.current.username}}
                           <span class="caret"></span></button>
                           <ul class="dropdown-menu">
                             <li ng-show="DUser.landingcounter > 0"><a href="#/Landing-lists">View landing list</a></li>
                             <li ng-show="DUser.landingcounter == 0"><a href="#/Landing-make">Make landing page</a></li>
-                            <li><a href="">Check landing page messages</a></li>
+                            <!-- <li><a href="">Check landing page messages</a></li>-->
                             <li><a href="" ng-click="Logout()">Logout</a></li>                        
                           </ul>
                         </div>

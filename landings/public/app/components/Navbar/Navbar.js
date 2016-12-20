@@ -2,7 +2,7 @@ var app = angular.module('Navbar',[]);
 
 
 //Empieza controllador LoginCtrl
-app.controller('loginCtrl',['$scope','$http','$filter','$uibModal','$rootScope','$location','$window', function($scope,$http,$filter,$uibModal,$rootScope,$location,$window){
+app.controller('loginCtrl',['$scope','$http','$filter','$uibModal','$rootScope','$location','$window','$timeout', function($scope,$http,$filter,$uibModal,$rootScope,$location,$window,$timeout){
 	var that = $scope;
 
 	$scope.User = {'switch':1, current:{}};
@@ -10,7 +10,7 @@ app.controller('loginCtrl',['$scope','$http','$filter','$uibModal','$rootScope',
 	//Funciones que solo sirven para trasladarse de un DIV a otro
 	$scope.scrollAbout = function(){
 		$(function(){
-			$('.intro-header')[0].scrollIntoView(true);
+			$('.content-section-a')[0].scrollIntoView(true);
 		});
 	}
 
@@ -69,7 +69,10 @@ app.controller('loginCtrl',['$scope','$http','$filter','$uibModal','$rootScope',
 	}
 
 	$rootScope.$on('LoginSuccess',function(){
-		that.CurrentUser();
+		$timeout(function(){
+			that.CurrentUser();
+		},2000)
+		
 	});
 
 	$scope.Logout = function(){

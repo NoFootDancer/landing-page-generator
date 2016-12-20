@@ -28,3 +28,4 @@ Route::get('Landing-count/{id}','usuarioLandingController@CountLandings');
 Route::post('Verify','usuarioLandingController@VerifyLanding');
 Route::put('updatelanding','usuarioLandingController@LandingUpdateData');
 Route::get('my-landings/{id}','usuarioLandingController@ShowMyLandings');
+Route::post('make-landing',['middleware'=>'landexist', 'uses'=>'usuarioLandingController@store']);

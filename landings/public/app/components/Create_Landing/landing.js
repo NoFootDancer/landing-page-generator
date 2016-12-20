@@ -4,7 +4,7 @@ app.config(['$routeProvider',function($routeProvider){
 	$routeProvider.when('/Landing-make',{
 		templateUrl:'app/components/Create_Landing/landingCreate.html',
 		controller:'landingCtrl',
-		css:'css/landing.css'
+		css:'css/business-casual.css'
 
 	});
 
@@ -17,22 +17,29 @@ app.config(['$routeProvider',function($routeProvider){
 	$routeProvider.when('/edit/:nombre_landing',{
 		templateUrl:'app/components/Create_Landing/landingEdit.html',
 		controller:'landEditCtrl',
-		css:'css/landing.css'
+		css:'css/business-casual.css'
 
 	});
 
 	$routeProvider.when('/Landing-lists',{
 		templateUrl:'app/components/Create_Landing/landingList.html',
 		controller:'ListCtrl',
-		css:'css/landing.css'	
+		css:'css/business-casual.css'	
 	});
 
 }]);
 
 //Crear landing
-app.controller('landingCtrl',['$scope','$http','$location',function($scope,$http,$location){
+app.controller('landingCtrl',['$scope','$http','$location', '$timeout',function($scope,$http,$location,$timeout){
 var that = $scope;
 $scope.Landing = {'userid':0};
+$scope.alertype = "Warning!";
+$scope.alertmsg = "That landing page is already in use, choose another one."
+
+$scope.CloseAlert = function(){
+
+	$("#alert").hide();
+}
 
 $scope.Init = function(){
 $http.get('current').success(function(data){
@@ -47,7 +54,26 @@ $scope.Submit = function(){
 
 	$http.post('make-landing',that.Landing).success(function(data){
 		console.log(data);
-		$location.path('/landing/'+that.Landing.name);
+		if(data != "Landing in use"){
+			$scope.alertype = "Success!";
+			$scope.alertmsg = "You'll be redirected to your new landing page."
+			$("#alert").removeClass();
+			$("#alert").addClass("alert alert-success");
+			$('#alert').show();
+
+			$timeout(function(){
+				$location.path('/landing/'+that.Landing.name);	
+			},5000)
+
+		}else{
+			$scope.alertype = "Warning!";
+			$scope.alertmsg = "That landing page is already in use, choose another one."
+			$("#alert").removeClass();
+			$("#alert").addClass("alert alert-danger");
+			$('#alert').show();
+
+		}
+		
 	});
 
 }
@@ -55,10 +81,13 @@ $scope.Submit = function(){
 }]);
 
 //Visualizar Landing
-app.controller('landCtrl',['$scope','$http','$routeParams','$location', function($scope,$http,$routeParams,$location){
+app.controller('landCtrl',['$scope','$http','$routeParams','$location','$window', function($scope,$http,$routeParams,$location,$window){
 var that = $scope;
 $scope.Landing = {'switch':1,Details:{}};
 $scope.Contact = {};
+
+
+
 
 if($routeParams){
 
@@ -67,7 +96,10 @@ if($routeParams){
 		if(data != "This landing page doesn't exists"){
 			that.Landing.Details = data; 
 			that.Contact.landingID = data.id;
-		}else{that.Landing.switch = 2;
+		}else{
+			that.Landing.switch = 2;
+
+
 			console.log(data);}
 		
 
@@ -84,7 +116,7 @@ $scope.Submit = function(){
 
 	$http.post('Landing-Contact',that.Contact).success(function(data){
 		that.contact = {};
-		$location.path(that.Landing.Details.hyperlink);
+		$window.location.href(that.Landing.Details.hyperlink);
 	})
 }
 
