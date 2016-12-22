@@ -23,6 +23,7 @@ Route::get('currentid','loginController@currentId');
 Route::get('logout','loginController@logout');
 Route::resource('make-landing','usuarioLandingController');
 Route::get('Landing-Page/{nombre_landing}', 'usuarioLandingController@showByName');
+Route::get('Landing-Page/{username}/{nombre_landing}', 'usuarioLandingController@showByNames');
 Route::resource('Landing-Contact', 'contactoController');
 Route::get('Landing-count/{id}','usuarioLandingController@CountLandings');
 Route::post('Verify','usuarioLandingController@VerifyLanding');

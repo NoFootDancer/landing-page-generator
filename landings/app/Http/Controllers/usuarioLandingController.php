@@ -49,6 +49,7 @@ class usuarioLandingController extends Controller
         $NewLand->estilo_id = 1;
         $NewLand->titulo_landing = $request->title;
         $NewLand->hyperlink = $request->link;
+        $NewLand->username = Auth::user()->username;
         $NewLand->save();
 
         return response()->json($NewLand);
@@ -68,6 +69,23 @@ class usuarioLandingController extends Controller
             return response($p);
         }
         
+    }
+
+    public function showByNames($username,$landingname){
+        $Land = usuarioLanding::where('username',$username)
+        ->where('nombre_landing',$landingname)->first();
+        
+        if($Land){
+
+            return response()->json($Land);
+
+        }else{
+
+            $p = "This landing page doesn't exists";
+
+            return response($p);
+        }
+
     }
 
     public function VerifyLanding(Request $request){

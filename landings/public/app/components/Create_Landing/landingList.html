@@ -8,15 +8,19 @@
 						<th>Landing title</th>
 						<th>Creation date</th>
 						<th>Last edition</th>
-						<th>Edit</th>
+						<th>Url</th>
+						<th>Options</th>
 						<tbody>
 							<tr ng-repeat="land in Landings">
 								<td>{{$index + 1}}</td>
 								<td>{{land.nombre_landing}}</td>
 								<td>{{land.created_at}}</td>
 								<td>{{land.updated_at}}</td>
+								<td><a href="/#/{{land.username}}/{{land.nombre_landing}}">http://mybrottus.net/#/{{land.username}}/{{land.nombre_landing}}</a></td>
 								<td>
-								<button type="button" class="btn btn-primary" ng-click="GoEdit(land.nombre_landing)"><span class="glyphicon glyphicon-pencil"></span> </button></td>
+								<button type="button" class="btn btn-primary" ng-click="GoEdit(land.nombre_landing)"><span class="glyphicon glyphicon-pencil"></span> </button>
+								<button type="button" class="btn btn-primary" ng-click="GoTo(land.username,land.nombre_landing)"><span class="glyphicon glyphicon-eye-open"></span> </button>
+								</td>
 							</tr>
 						</tbody>
 					</thead>

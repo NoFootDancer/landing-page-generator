@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
 use App\contactoLanding;
 class contactoController extends Controller
 {
@@ -40,6 +41,13 @@ class contactoController extends Controller
         $Msg->comentarios = $request->msg;
         $Msg->landing_id =$request->landingID;
         $Msg->save();
+
+        $dato = $request->tmail;
+
+        Mail::send('emails.contact',$request->all(), function($msj)use($dato){
+            $msj->subject('New contact');
+            $msj->to($dato);
+        });      
 
         return response()->json($Msg);
     }

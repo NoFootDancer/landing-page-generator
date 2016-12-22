@@ -8,13 +8,26 @@ app.config(['$routeProvider',function($routeProvider){
 
 	});
 
-	$routeProvider.when('/landing/:nombre_landing',{
+	/*$routeProvider.when('/landing/:nombre_landing',{
+		templateUrl:'app/components/Create_Landing/landingPage.html',
+		controller:'landCtrl',
+		css:'css/landing.css'
+	});*/
+
+	$routeProvider.when('/:username/:nombre_landing',{
 		templateUrl:'app/components/Create_Landing/landingPage.html',
 		controller:'landCtrl',
 		css:'css/landing.css'
 	});
 
-	$routeProvider.when('/edit/:nombre_landing',{
+	$routeProvider.when('/error',{
+		templateUrl:'app/components/Create_Landing/Error.html',
+		controller:'landCtrl',
+		css:'css/landing.css'
+	});	
+
+
+	$routeProvider.when('/landing/edit/:nombre_landing',{
 		templateUrl:'app/components/Create_Landing/landingEdit.html',
 		controller:'landEditCtrl',
 		css:'css/business-casual.css'
@@ -32,7 +45,7 @@ app.config(['$routeProvider',function($routeProvider){
 //Crear landing
 app.controller('landingCtrl',['$scope','$http','$location', '$timeout',function($scope,$http,$location,$timeout){
 var that = $scope;
-$scope.Landing = {'userid':0};
+$scope.Landing = {'userid':0,'name':"launch-promotion",'title':"Big opportunity of recieving a free product"};
 $scope.alertype = "Warning!";
 $scope.alertmsg = "That landing page is already in use, choose another one."
 
@@ -91,13 +104,16 @@ $scope.Contact = {};
 
 if($routeParams){
 
-	$http.get('Landing-Page/'+$routeParams.nombre_landing).success(function(data){
+	$http.get('Landing-Page/'+$routeParams.username+"/"+$routeParams.nombre_landing).success(function(data){
 		
 		if(data != "This landing page doesn't exists"){
 			that.Landing.Details = data; 
 			that.Contact.landingID = data.id;
+			that.Contact.tmail = data.contact_correo;
 		}else{
 			that.Landing.switch = 2;
+
+			$location.path('/error')
 
 
 			console.log(data);}
@@ -108,15 +124,15 @@ if($routeParams){
 
 $scope.GoEdit = function(ruta){
 
-	$location.path('/edit/'+ruta);
+	$location.path('/landing/edit/'+ruta);
 
 }
 
 $scope.Submit = function(){
 
 	$http.post('Landing-Contact',that.Contact).success(function(data){
-		that.contact = {};
-		$window.location.href(that.Landing.Details.hyperlink);
+		that.Contact = {};
+		window.location.replace(that.Landing.Details.hyperlink);
 	})
 }
 
@@ -168,7 +184,7 @@ $http.get('currentid').success(function(data){
 $scope.Edit = function(){
 
 	$http.put('updatelanding',that.Landing).success(function(data){
-		$location.path('/landing/'+that.Landing.name);
+		$location.path('/'+that.Landing.username+'/'+that.Landing.name);
 	});
 
 }
@@ -191,10 +207,17 @@ $scope.BringThem = function(){
 	});
 
 }
+
 $scope.BringThem();
 
 $scope.GoEdit = function(nombre){
-	$location.path('/edit/'+nombre)
+	$location.path('/landing/edit/'+nombre)
+}
+
+$scope.GoTo = function(usuario,nombre){
+
+	$location.path('/'+usuario+'/'+nombre);
+
 }
 
 

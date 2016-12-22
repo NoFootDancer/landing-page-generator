@@ -195,15 +195,15 @@
 
 
                     <ul class="list-inline banner-social-buttons">
-                        <li>
+                        <li ng-show="Landing.Details.redes_facebook != null">
                                 <a href="{{Landing.Details.redes_facebook}}" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-facebook-official fa-fw" style="color:#3b5998;"></i> <span class="network-name">Facebook</span></a>
                             </li>
 
-                            <li>
+                            <li ng-show="Landing.Details.redes_twitter != null">
                                 <a href="{{Landing.Details.redes_twitter}}" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw" style="color:#489fdf;"></i> <span class="network-name">Twitter</span></a>
                             </li>
 
-                            <li>
+                            <li ng-show="Landing.Details.redes_youtube != null">
                                 <a href="{{Landing.Details.redes_youtube}}" class="btn btn-default btn-lg"><i class="fa fa-youtube-square fa-fw" style="color:#e62117"></i> <span class="network-name">Youtube</span></a>
                             </li>
                     </ul>
@@ -223,7 +223,10 @@
                         <strong>form</strong>
                     </h2>
                     <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, vitae, distinctio, possimus repudiandae cupiditate ipsum excepturi dicta neque eaque voluptates tempora veniam esse earum sapiente optio deleniti consequuntur eos voluptatem.</p>
+                    <p style="text-align:justify;">We invite you to take part of this excellent opportunity to have a taste of our delicious coffee, completely free!<br>
+                    We're so sure you'll like it that we dared ourselves to invest and gift you this product because once you taste, you'll be sure about its quality and delicious taste.<br><br>
+
+                    Just put your name as a reference, your email and we'll send you a page so you can ask for this product, completely FREE.</p>
                     
                     <form name="Contact" ng-submit="Submit()">
                         <div class="form-group">
@@ -239,7 +242,7 @@
 
                           <div class="form-group">
                             <label for="exampleInputEmail2">Message</label>
-                            <textarea class="form-control" id="exampleInputEmail2" placeholder="Type something here!" ng-model="Contact.msg" required></textarea>
+                            <textarea class="form-control" id="exampleInputEmail2" placeholder="Type something here!" ng-model="Contact.msg"></textarea>
                           </div>
                           <button type="submit" class="btn btn-default" ng-disabled="Contact.$invalid">Send message</button>
                                               
